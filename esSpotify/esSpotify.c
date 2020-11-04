@@ -62,6 +62,6 @@ void main(){
     Canzone playlist[NUM_CANZ];
     int k = 0;
     leggiFile(playlist, &k);
-    //random(playlist,k);
+    random(playlist,k);
 }
 

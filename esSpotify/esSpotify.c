@@ -9,6 +9,7 @@ typedef struct canzone{
     int num;
     char titolo[LUNG];
     char autore[LUNG];
+    int val;
 }Canzone;
 
 
@@ -25,36 +26,33 @@ void leggiFile(Canzone elenco[], int* c){
             *c=*c+1;
 
         }
-
+        /*
         for(int k = 0; k < NUM_CANZ; k++){          //stampo il vettore
             printf("%d %s %s\n", elenco[k].num, elenco[k].titolo, elenco[k].autore);
-        }
+        }*/
 
         fclose(fp);
     }
 }
 
-        //non stampa le canzoni randomicamente
-void random(Canzone elenco[], int dim){    //genera canzoni in modo random
-    int vet[dim];
-    int n;
-    srand(time(NULL));
 
-    for(int k = 0; k < dim; k++){
-        vet[k] = k; //assegna a vet[0] = 0, vet[1] = 1 ecc...
-    }
-    for(int j = 0; j < dim; j++){
-        do{
-            n = rand() % dim + 1;
-        }while(n = vet[j]);        //controllo che il numero uscito non sia nel vettore
-        vet[j] = n;
-        if(n == elenco[j].num){
-            printf("%d %s, %s", j, elenco[j].titolo, elenco[j].autore);   //stampo numero, nome e autore della canzone
+void random(Canzone playlist[],int cnt){
+    srand(time(NULL));
+    for(int i=0;i< cnt;i++)
+        playlist[i].val=rand()%10000000;
+    int max=0;
+    for(int i=0;i<cnt;i++){
+        max=i;
+        for(int j=0;j<cnt;j++){
+            if(playlist[max].val<playlist[j].val){
+                max=j;
+            }
         }
+        printf("%d %s %s\n", i+1, playlist[max].titolo, playlist[max].autore);
+        playlist[max].val=-NUM_CANZ+i;
     }
     return;
 }
-
 
 
 

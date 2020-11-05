@@ -77,8 +77,6 @@ void main(){
     Canzone playlist[NUM_CANZ];
     char nomeFileIn[] = "musica.csv";
     int r = nRighe(nomeFileIn);
-    Canzone *play;
-    //play = (Canzone*)malloc(r * sizeof(Canzone));
     leggiFile(playlist, r);
     random(playlist, r);
 }
